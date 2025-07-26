@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan Rizki & Amanda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: url('OK.jpg') no-repeat center center fixed;
+      background-size: cover;
+      scroll-behavior: smooth;
+      transition: background-color 0.5s, color 0.5s;
+    }
+    body.dark {
+      background: #121212;
+      color: #eee;
+    }
+    .kartu {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
+    }
+    body.dark .kartu {
+      background-color: rgba(30, 30, 30, 0.85);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #c94f7c;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #a93264;
+    }
+    .hero h2 {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .photo-wrapper {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 30px;
+    }
+    .floral-frame {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .floral-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .photo-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 6px solid #f5e4db;
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .countdown {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #b84068;
+    }
+    .story, .location, .rsvp {
+      margin-top: 50px;
+      scroll-margin-top: 100px;
+    }
+    .story h2 {
+      text-align: center;
+    }
+    .location iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 2px solid #c94f7c;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+      z-index: 999;
+    }
+    .music-btn:hover {
+      background-color: #fff;
+      transform: scale(1.1);
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 99;
+    }
+    .mode-toggle img {
+      width: 40px;
+      height: 40px;
+    }
+    button {
+      background-color: #c94f7c;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a93264;
+    }
+    @media screen and (max-width: 600px) {
+      .photo-wrapper { width: 240px; height: 240px; }
+      .photo-circle { width: 140px; height: 140px; }
+      .kartu { margin: 20px; padding: 20px; }
+    }
+    @keyframes kedut {
+      0% { transform: scale(1); }
+      25% { transform: scale(0.9); }
+      50% { transform: scale(1.1); }
+      75% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    .kedut.animate {
+      animation: kedut 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔁 Toggle Mode Button -->
+  <button class="mode-toggle" onclick="toggleMode()">
+    <img src="https://img.icons8.com/ios-filled/50/contrast.png" alt="Toggle Mode">
+  </button>
+
+  <!-- 🔊 Tombol Musik -->
+  <button class="music-btn kedut" onclick="toggleMusic(this)" title="Putar Musik 🎶">
+    🎶
+  </button>
+
+  <!-- 🔈 Elemen Audio -->
+  <audio id="bg-music" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+  </audio>
+
+  <div class="kartu">
+    <header>
+      <h1>Undangan Pernikahan</h1>
+    </header>
+
+    <section class="hero">
+      <div class="photo-wrapper">
+        <div class="floral-frame">
+          <img src="R.png" alt="Ornamen Bunga" />
+        </div>
+        <div class="photo-circle">
+          <img src="thumbnail.jpg" alt="Foto Pasangan" />
+        </div>
+      </div>
+      <h1>Rizki & Amanda</h1>
+      <h2>Sabtu, 30 Agustus 2025</h2>
+      <p>Dengan segala kerendahan hati, kami mengundang Anda untuk hadir dalam hari istimewa kami.</p>
+      <div class="countdown" id="countdown"></div>
+    </section>
+
+    <section class="story">
+      <img src="logo.png" alt="Logo Pasangan" width="100" style="margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+      <h2>Cerita Kami</h2>
+      <p style="text-align: center;">Kami bertemu di sebuah acara kampus pada tahun 2020. Sejak itu, kebersamaan kami terus tumbuh hingga akhirnya kami memutuskan untuk melangkah ke jenjang pernikahan.</p>
+      <div style="text-align:center; margin-top: 30px;">
+        <h3 style="margin-bottom: 15px; color: #b84068;">Video Prewedding Kami</h3>
+        <video controls width="100%" style="max-width: 640px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+          <source src="prewedding.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video HTML5.
+        </video>
+      </div>
+    </section>
+
+    <section class="location">
+      <h2>Lokasi Pernikahan</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <section class="rsvp" id="rsvp">
+      <h2>Konfirmasi Kehadiran</h2>
+      <button onclick="alert('Terima kasih sudah mengonfirmasi!')">Saya Akan Hadir</button>
+    </section>
+  </div>
+
+  <script>
+    function toggleMusic(btn) {
+      const music = document.getElementById("bg-music");
+      if (music) {
+        music.paused ? music.play() : music.pause();
+        btn.classList.add("animate");
+        setTimeout(() => btn.classList.remove("animate"), 400);
+      }
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    const countdown = document.getElementById("countdown");
+    const weddingDate = new Date("2025-08-30T00:00:00").getTime();
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = days + " hari " + hours + " jam " + minutes + " menit " + seconds + " detik ";
+      if (distance < 0) {
+        clearInterval(x);
+        countdown.innerHTML = "Hari pernikahan telah tiba!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
